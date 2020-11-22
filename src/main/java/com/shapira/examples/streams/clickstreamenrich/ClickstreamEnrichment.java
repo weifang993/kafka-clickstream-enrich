@@ -33,11 +33,6 @@ public class ClickstreamEnrichment {
         // https://cwiki.apache.org/confluence/display/KAFKA/Kafka+Streams+Application+Reset+Tool
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
-        // work-around for an issue around timing of creating internal topics
-        // this was resolved in 0.10.2.0 and above
-        // don't use in large production apps - this increases network load
-        // props.put(CommonClientConfigs.METADATA_MAX_AGE_CONFIG, 500);
-
         StreamsBuilder builder = new StreamsBuilder();
 
         KStream<Integer, PageView> views = builder.stream(Constants.PAGE_VIEW_TOPIC, Consumed.with(Serdes.Integer(), new PageViewSerde()));
@@ -49,7 +44,7 @@ public class ClickstreamEnrichment {
         views.print(Printed.toSysOut());
         profiles.toStream().print(Printed.toSysOut());
         searches.print(Printed.toSysOut());
-         */
+        */
 
         KStream<Integer, UserActivity> viewsWithProfile = views.leftJoin(profiles,
                 (page, profile) -> {

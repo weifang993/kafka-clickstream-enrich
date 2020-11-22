@@ -3,7 +3,7 @@ Kafka Streams Example - Joining streams to generate rich clickstream analysis da
 
 Overview
 --------
-This forked repo has the original codebase updated to kafka streams 2.6.  
+This forked repo has the original codebase updated to kafka streams 2.6. If using IntelliJ, by making this project a Maven project will enable intellisense prompts.
 
 This example takes 2 streams of data: Stream of searches and stream of user clicks
 It also takes a stream of profile-updates, representing changes to a profiles table (assume we are getting those changes from MySQL using KafkaConnect connector)
